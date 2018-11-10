@@ -17,11 +17,13 @@ public class ShipController : MonoBehaviour
 	public GameObject shot;
 	public Transform shotSpawn;
     private Rigidbody rb;
+	private AudioSource audioSource;
 	private float nextFire;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+		audioSource = GetComponent<AudioSource>();
 		nextFire = Time.time;
     }
 	// update is called before frame redrawn, every frame
@@ -31,6 +33,7 @@ public class ShipController : MonoBehaviour
 		{
 			nextFire = Time.time + fireRate;
 			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+			audioSource.Play();
 		}
 	}
     // called by unity once before each physics step
